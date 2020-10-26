@@ -1,7 +1,9 @@
-<h1>hello</h1>
+<h1>Mosh</h1>
+<button (click)="onAdd()">Add</button>
 <ul>
-  <li *ngFor="let e of courses; index as y;even as even;first as isFirst">
-    {{ y }} - {{ e.name }}<span *ngIf="even"> EVEN</span>
-    <span *ngIf="isFirst"> First</span>
+  <li *ngFor="let e of courses">
+    {{ e.name }}
+    <button (click)="onChange(e)">Change Name</button>
+    <button (click)="onRemove(e)">Remove</button>
   </li>
 </ul>
