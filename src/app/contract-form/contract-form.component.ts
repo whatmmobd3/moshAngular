@@ -9,4 +9,7 @@ export class ContractFormComponent {
   log(x) {
     console.log(x);
   }
+  onSubmit = (e) => {
+    console.log(e);
+  };
 }
