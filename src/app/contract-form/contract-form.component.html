@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<form #f="ngForm" (ngSubmit)="submit(f)">
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input
@@ -18,12 +18,21 @@
   </div>
   <div class="alert alert-danger" *ngIf="element.touched && !element.valid">
     <div *ngIf="element.errors.required">First name is required</div>
-    <div *ngIf="element.errors.minlength">First name is minimun {{element.errors.minlength.requiredLength}} characters</div>
+    <div *ngIf="element.errors.minlength">
+      First name is minimun
+      {{ element.errors.minlength.requiredLength }} characters
+    </div>
     <div *ngIf="element.errors.pattern">First name doesn't match pattern</div>
   </div>
   <div class="form-group">
     <label for="comment">Comment</label>
-    <textarea id="comment" cols="30" rows="10" class="form-control"></textarea>
+    <textarea
+      ngModel
+      name="comment"
+      cols="30"
+      rows="10"
+      class="form-control"
+    ></textarea>
   </div>
   <button class="btn btn-primary">Submit</button>
 </form>
