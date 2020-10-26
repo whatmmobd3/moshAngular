@@ -7,22 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mosh';
-  courses = [
-    { id: 1, name: 'course 1' },
-    { id: 2, name: 'course 2' },
-    { id: 3, name: 'course 3' },
-  ];
-
-  onAdd = () => {
-    this.courses.push({ id: 4, name: 'aaa bbb' });
+  courses;
+  onLoad = () => {
+    this.courses = [
+      { id: 1, name: 'course 1' },
+      { id: 2, name: 'course 2' },
+      { id: 3, name: 'course 3' },
+    ];
   };
 
-  onRemove = (e) => {
-    let index = this.courses.indexOf(e);
-    this.courses.splice(index, 1);
-  };
-
-  onChange = (e) => {
-    e.name = 'UPDATE';
-  };
+  trackCourse = (index,e) => {
+    return e ? e.id : undefined;
+  }
 }
