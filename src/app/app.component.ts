@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-//1
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +7,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'mosh';
   courses;
+  task = {
+    title: 'Safe Traversal',
+    assignee: null
+  };
   onLoad = () => {
     this.courses = [
       { id: 1, name: 'course 1' },
@@ -16,7 +19,7 @@ export class AppComponent {
     ];
   };
 
-  trackCourse = (index,e) => {
+  trackCourse = (index, e) => {
     return e ? e.id : undefined;
-  }
+  };
 }
