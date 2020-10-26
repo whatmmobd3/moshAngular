@@ -1,10 +1,1 @@
-<h1>Mosh</h1>
-<button (click)="onLoad()">Load Courses</button>
-<br />
-<span *ngIf="task.assignee">{{ task.assignee.name }}</span>
-<span>{{ task.assignee?.name }}</span>
-<ul>
-  <li *ngFor="let e of courses; trackBy: trackCourse">
-    {{ e.name }}
-  </li>
-</ul>
+<input type="text" [appInputFormat]="'uppercase'" />
