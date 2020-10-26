@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+
+
 import { AppComponent } from './app.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ContractFormComponent } from './contract-form/contract-form.component';
@@ -9,10 +12,12 @@ import { ContractFormComponent } from './contract-form/contract-form.component';
   declarations: [
     AppComponent,
     InputFormatDirective,
-    ContractFormComponent
+    ContractFormComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
