@@ -60,6 +60,12 @@
         Subscribed to mailling
       </label>
     </div>
+    <div *ngFor="let e of contactMethods" class="radio">
+      <label for="">
+        <input ngModel type="radio" name="contactMethods" [value]="e.id" />
+        {{ e.name }}
+      </label>
+    </div>
   </div>
   <p>{{ f.value.contact | json }}</p>
 
