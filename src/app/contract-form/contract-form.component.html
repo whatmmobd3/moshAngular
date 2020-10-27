@@ -1,7 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit(f)">
-
   <div ngModelGroup="contact" #contact="ngModelGroup">
-
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input
@@ -19,11 +17,6 @@
         class="form-control"
       />
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-
-      <input name="email" ngModel class="form-control" />
-    </div>
 
     <div class="alert alert-danger" *ngIf="element.touched && !element.valid">
       <div *ngIf="element.errors.required">First name is required</div>
@@ -32,6 +25,10 @@
         {{ element.errors.minlength.requiredLength }} characters
       </div>
       <div *ngIf="element.errors.pattern">First name doesn't match pattern</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input name="email" ngModel class="form-control" />
     </div>
     <div class="form-group">
       <label for="comment">Comment</label>
@@ -43,7 +40,28 @@
         class="form-control"
       ></textarea>
     </div>
+    <div class="form-group">
+      <label for="contactMethod">Contact Method</label>
+      <select
+        ngModel
+        name="contactMethod"
+        id="contactMethod"
+        class="form-control"
+      >
+        <option value=""></option>
+        <option *ngFor="let e of contactMethods" [ngValue]="e">
+          {{ e.name }}
+        </option>
+      </select>
+    </div>
+    <div class="checkbox">
+      <label for="">
+        <input type="checkbox" name="isSubscribed" ngModel />
+        Subscribed to mailling
+      </label>
+    </div>
   </div>
+  <p>{{ f.value.contact | json }}</p>
 
   <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>
