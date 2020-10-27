@@ -1,38 +1,43 @@
 <form #f="ngForm" (ngSubmit)="submit(f)">
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input
-      required
-      minlength="3"
-      maxlength="10"
-      pattern="banana"
-      name="firstName"
-      ngModel
-      #element="ngModel"
-      (change)="log(element)"
-      id="firstName"
-      required
-      type="text"
-      class="form-control"
-    />
-  </div>
-  <div class="alert alert-danger" *ngIf="element.touched && !element.valid">
-    <div *ngIf="element.errors.required">First name is required</div>
-    <div *ngIf="element.errors.minlength">
-      First name is minimun
-      {{ element.errors.minlength.requiredLength }} characters
+  <input name="email" ngModel />
+
+  <div ngModelGroup="contact" #contact="ngModelGroup">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        ngModel
+        required
+        minlength="3"
+        maxlength="10"
+        pattern="banana"
+        name="firstName"
+        #element="ngModel"
+        (change)="log(element)"
+        id="firstName"
+        required
+        type="text"
+        class="form-control"
+      />
     </div>
-    <div *ngIf="element.errors.pattern">First name doesn't match pattern</div>
+    <div class="alert alert-danger" *ngIf="element.touched && !element.valid">
+      <div *ngIf="element.errors.required">First name is required</div>
+      <div *ngIf="element.errors.minlength">
+        First name is minimun
+        {{ element.errors.minlength.requiredLength }} characters
+      </div>
+      <div *ngIf="element.errors.pattern">First name doesn't match pattern</div>
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea
+        ngModel
+        name="comment"
+        cols="30"
+        rows="10"
+        class="form-control"
+      ></textarea>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="comment">Comment</label>
-    <textarea
-      ngModel
-      name="comment"
-      cols="30"
-      rows="10"
-      class="form-control"
-    ></textarea>
-  </div>
+
   <button class="btn btn-primary">Submit</button>
 </form>
