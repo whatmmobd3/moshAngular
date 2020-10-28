@@ -7,9 +7,12 @@ export class UsernameValidator {
     return null;
   }
 
-  static shouldBeUnique(e: AbstractControl): ValidationErrors | null {
-    if (e.value === 'mosh') return { shouldBeUnique: true };
-
-    return null;
+  static shouldBeUnique(e: AbstractControl): Promise<ValidationErrors | null> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (e.value === 'mosh') resolve({ shouldBeUnique: true });
+        else resolve(null);
+      });
+    });
   }
 }
