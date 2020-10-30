@@ -1,4 +1,6 @@
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,8 +8,14 @@ import { Component } from '@angular/core';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent  {
+export class PostsComponent {
+  posts: any;
 
-  constructor(c: HttpClientModule) { }
+  constructor(c: HttpClient) {
+    c.get('https://jsonplaceholder.typicode.com/posts').subscribe(res => {
+      this.posts = res
+    })
+
+  }
 
 }
