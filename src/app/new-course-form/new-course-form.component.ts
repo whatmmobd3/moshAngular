@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'new-course-form',
@@ -8,22 +8,17 @@ import { FormGroup, FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./new-course-form.component.css'],
 })
 export class NewCourseFormComponent {
-  form = new FormGroup({
-    topics: new FormArray([])
-  })
+  form;
+  constructor(c: FormBuilder) {
+    this.form = c.group({
+      name: ['', Validators.required],
+      contact: c.group({
+        email: [],
+        phone: []
+      }),
+      topics: c.array([])
 
-  get topics() {
-    return this.form.get('topics') as FormArray
-  }
-
-  addTopic(topic: HTMLInputElement) {
-    this.topics.push(new FormControl(topic.value))
-
-  }
-
-  removeTopics(c: FormControl) {
-    let index = this.topics.controls.indexOf(c)
-    this.topics.removeAt(index)
+    })
   }
 
 
