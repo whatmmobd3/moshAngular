@@ -1,12 +1,3 @@
 <form [formGroup]="form">
-    <input formControlName="name" />
-    <div formGroupName="contact">
-        <input type="text" formControlName="email">
-        <input type="text" formControlName="phone">
-    </div>
-    <ul>
-        <li *ngFor="let topic of topics.controls">
-            {{topic.value}}
-        </li>
-    </ul>
+
 </form>
