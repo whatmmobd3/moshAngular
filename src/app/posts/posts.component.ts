@@ -16,14 +16,15 @@ export class PostsComponent {
     })
   }
 
-  createPost(e: HTMLInputElement) {
+  createPost(input: HTMLInputElement) {
 
-    let post = { title: e.value }
-    e.value = ''
+    let post = { title: input.value }
+    input.value = ''
 
     this.http.post(this.url, post).subscribe(res => {
       post['id'] = res.id
       this.posts.splice(0, 0, post)
+
     })
 
 
