@@ -8,12 +8,15 @@ import { PostService } from '../services/post.service';
 })
 export class PostsComponent {
   posts: any;
-  private url = 'https://jsonplaceholder.typicode.com/posts'
 
   constructor(private service: PostService) {
     this.service.getPosts()
       .subscribe(res => {
         this.posts = res
+      }, error => {
+        alert('An unexpected error occurred.')
+        console.log(error);
+
       })
   }
 
