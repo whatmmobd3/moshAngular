@@ -1,4 +1,4 @@
-<input autoFocus (keyup.enter)="createPost(title)" #title type="text" class="form-control" />
+<input autoFocus (keyup.enter)="createPost(title)"  #title type="text" class="form-control" />
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let c of posts">
         <button (click)="deletePost(c)" class="btn btn-default btn-sm">Delete</button>

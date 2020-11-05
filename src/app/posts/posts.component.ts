@@ -16,6 +16,13 @@ export class PostsComponent {
     })
   }
 
+  ngOnInit() {
+    this.http.get(this.url).
+      subscribe(res => {
+        this.posts = res
+      })
+  }
+
   createPost(input: HTMLInputElement) {
     let post = { title: input.value }
     input.value = ''
