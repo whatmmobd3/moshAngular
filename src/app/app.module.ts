@@ -12,6 +12,7 @@ import { NewCourseFormComponent } from './new-course-form/new-course-form.compon
 import { PostsComponent } from './posts/posts.component';
 
 import { PostService } from './services/post.service'
+import { AppErrorHandler } from './common/app-error-handler';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { PostService } from './services/post.service'
     PostsComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  providers: [PostService],
+  providers: [PostService, AppErrorHandler],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
