@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'posts',
@@ -10,15 +10,16 @@ export class PostsComponent {
   posts: any;
   private url = 'https://jsonplaceholder.typicode.com/posts'
 
-  constructor(private http: HttpClient) {
-    http.get(this.url).subscribe(res => {
-      this.posts = res
-    })
+  constructor(private service: PostService) {
+    this.service.getPosts()
+      .subscribe(res => {
+        this.posts = res
+      })
   }
 
   ngOnInit() {
-    this.http.get(this.url).
-      subscribe(res => {
+    this.service.getPosts()
+      .subscribe(res => {
         this.posts = res
       })
   }
@@ -26,24 +27,25 @@ export class PostsComponent {
   createPost(input: HTMLInputElement) {
     let post = { title: input.value }
     input.value = ''
-    this.http.post(this.url, post).subscribe(res => {
-      // post['id'] = res.id
-      this.posts.splice(0, 0, post)
-    })
+    this.service.createPost(post)
+      .subscribe(res => {
+        this.posts.splice(0, 0, post)
+      })
   }
 
   updatePost(post) {
-    this.http.patch(this.url + "/" + post.id, JSON.stringify({ isRead: true }))
+    this.service.updatePost(post)
       .subscribe(res => {
         console.log(res);
       })
   }
 
-  deletePost(post){
-    this.http.delete(this.url + "/" + post.id).subscribe(res =>{
-      let index = this.posts.indexOf(post)
-      this.posts.splice(index,1)
-    })
+  deletePost(post) {
+    this.service.deletePost(post)
+      .subscribe(res => {
+        let index = this.posts.indexOf(post)
+        this.posts.splice(index, 1)
+      })
   }
 
 }
