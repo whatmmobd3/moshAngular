@@ -10,20 +10,16 @@ export class PostsComponent {
   posts: any;
 
   constructor(private service: PostService) {
-    this.service.getPosts()
-      .subscribe(res => {
-        this.posts = res
-      }, error => {
-        alert('An unexpected error occurred.')
-        console.log(error);
 
-      })
   }
 
   ngOnInit() {
     this.service.getPosts()
       .subscribe(res => {
         this.posts = res
+      }, error => {
+        alert('An unexpected error occurred.')
+        console.log(error)
       })
   }
 
@@ -33,6 +29,13 @@ export class PostsComponent {
     this.service.createPost(post)
       .subscribe(res => {
         this.posts.splice(0, 0, post)
+      }, (error: Response) => {
+        if (error.status === 400) {
+
+        } else {
+          alert('An unexpected error occurred.')
+          console.log(error)
+        }
       })
   }
 
@@ -40,14 +43,25 @@ export class PostsComponent {
     this.service.updatePost(post)
       .subscribe(res => {
         console.log(res);
+      }, error => {
+        alert('An unexpected error occurred.')
+        console.log(error)
       })
   }
 
   deletePost(post) {
-    this.service.deletePost(post)
+    this.service.deletePost(345)
       .subscribe(res => {
         let index = this.posts.indexOf(post)
         this.posts.splice(index, 1)
+      }, (error: Response) => {
+        if (error.status === 404) {
+          alert('This post has already been deleted.')
+        } else {
+          alert('An unexpected error occurred.')
+          console.log(error)
+
+        }
       })
   }
 
